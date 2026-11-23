@@ -35,6 +35,12 @@ app.get("/", (req, res) => {
         version: "1.0.0"
     });
 });
+app.get("/api/config-check", (req, res) => {
+    res.json({
+        jwtSecretConfigured: Boolean(process.env.JWT_SECRET),
+        databaseConfigured: Boolean(process.env.DB_HOST)
+    });
+});
 
 // Not Found Route
 app.use((req, res) => {
