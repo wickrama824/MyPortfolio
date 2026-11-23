@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./Skills.css";
+import "./skills.css";
 
 const categoryDescriptions = {
     "Frontend Development": "Creating beautiful and responsive user interfaces.",
