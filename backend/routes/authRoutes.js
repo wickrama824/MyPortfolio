@@ -6,7 +6,10 @@ const jwt = require("jsonwebtoken");
 const db = require("../config/db");
 const authMiddleware = require("../middleware/authMiddleware");
 
+// =====================================
 // ADMIN LOGIN
+// =====================================
+
 router.post("/login", (req, res) => {
 
     const { username, password } = req.body;
@@ -23,6 +26,8 @@ router.post("/login", (req, res) => {
     db.query(sql, [username], async (err, result) => {
 
         if (err) {
+            console.error("LOGIN DATABASE ERROR:", err.message);
+
             return res.status(500).json({
                 success: false,
                 message: "Database error"
@@ -30,6 +35,8 @@ router.post("/login", (req, res) => {
         }
 
         if (result.length === 0) {
+            console.log("LOGIN FAILED: Admin username not found");
+
             return res.status(401).json({
                 success: false,
                 message: "Invalid username or password"
@@ -46,9 +53,20 @@ router.post("/login", (req, res) => {
             );
 
             if (!isMatch) {
+                console.log("LOGIN FAILED: Password mismatch");
+
                 return res.status(401).json({
                     success: false,
                     message: "Invalid username or password"
+                });
+            }
+
+            if (!process.env.JWT_SECRET) {
+                console.error("LOGIN ERROR: JWT_SECRET is missing");
+
+                return res.status(500).json({
+                    success: false,
+                    message: "Server authentication configuration error"
                 });
             }
 
@@ -58,10 +76,14 @@ router.post("/login", (req, res) => {
                     username: admin.username
                 },
                 process.env.JWT_SECRET,
-                { expiresIn: "1d" }
+                {
+                    expiresIn: "1d"
+                }
             );
 
-            res.json({
+            console.log("ADMIN LOGIN SUCCESS");
+
+            return res.json({
                 success: true,
                 message: "Login successful",
                 token,
@@ -73,7 +95,9 @@ router.post("/login", (req, res) => {
 
         } catch (error) {
 
-            res.status(500).json({
+            console.error("LOGIN ERROR:", error.message);
+
+            return res.status(500).json({
                 success: false,
                 message: "Login failed"
             });
@@ -85,7 +109,10 @@ router.post("/login", (req, res) => {
 });
 
 
+// =====================================
 // CHANGE ADMIN PASSWORD
+// =====================================
+
 router.put("/change-password", authMiddleware, async (req, res) => {
 
     const { currentPassword, newPassword } = req.body;
@@ -111,6 +138,8 @@ router.put("/change-password", authMiddleware, async (req, res) => {
         db.query(sql, [req.admin.id], async (err, result) => {
 
             if (err) {
+                console.error("CHANGE PASSWORD DATABASE ERROR:", err.message);
+
                 return res.status(500).json({
                     success: false,
                     message: "Database error"
@@ -157,13 +186,17 @@ router.put("/change-password", authMiddleware, async (req, res) => {
                     (updateErr) => {
 
                         if (updateErr) {
+                            console.error("PASSWORD UPDATE ERROR:", updateErr.message);
+
                             return res.status(500).json({
                                 success: false,
                                 message: "Failed to change password"
                             });
                         }
 
-                        res.json({
+                        console.log("ADMIN PASSWORD UPDATED");
+
+                        return res.json({
                             success: true,
                             message: "Password changed successfully"
                         });
@@ -173,7 +206,9 @@ router.put("/change-password", authMiddleware, async (req, res) => {
 
             } catch (error) {
 
-                res.status(500).json({
+                console.error("CHANGE PASSWORD ERROR:", error.message);
+
+                return res.status(500).json({
                     success: false,
                     message: "Password change failed"
                 });
@@ -184,7 +219,9 @@ router.put("/change-password", authMiddleware, async (req, res) => {
 
     } catch (error) {
 
-        res.status(500).json({
+        console.error("PASSWORD ROUTE ERROR:", error.message);
+
+        return res.status(500).json({
             success: false,
             message: "Something went wrong"
         });
