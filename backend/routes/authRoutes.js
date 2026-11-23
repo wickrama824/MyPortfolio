@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
+
 const db = require("../config/db");
 const authMiddleware = require("../middleware/authMiddleware");
 
@@ -35,8 +36,6 @@ router.post("/login", (req, res) => {
         }
 
         if (result.length === 0) {
-            console.log("LOGIN FAILED: Admin username not found");
-
             return res.status(401).json({
                 success: false,
                 message: "Invalid username or password"
@@ -53,45 +52,62 @@ router.post("/login", (req, res) => {
             );
 
             if (!isMatch) {
-                console.log("LOGIN FAILED: Password mismatch");
-
                 return res.status(401).json({
                     success: false,
                     message: "Invalid username or password"
                 });
             }
 
-            if (!process.env.JWT_SECRET) {
-                console.error("LOGIN ERROR: JWT_SECRET is missing");
+            // Generate random session token
+            const token = crypto.randomBytes(32).toString("hex");
 
-                return res.status(500).json({
-                    success: false,
-                    message: "Server authentication configuration error"
-                });
-            }
+            // Hash token before storing in database
+            const tokenHash = crypto
+                .createHash("sha256")
+                .update(token)
+                .digest("hex");
 
-            const token = jwt.sign(
-                {
-                    id: admin.id,
-                    username: admin.username
-                },
-                process.env.JWT_SECRET,
-                {
-                    expiresIn: "1d"
-                }
+            // Session expires after 24 hours
+            const expiresAt = new Date(
+                Date.now() + 24 * 60 * 60 * 1000
             );
 
-            console.log("ADMIN LOGIN SUCCESS");
+            const insertSql = `
+                INSERT INTO sessions
+                (admin_id, token_hash, expires_at)
+                VALUES (?, ?, ?)
+            `;
 
-            return res.json({
-                success: true,
-                message: "Login successful",
-                token,
-                admin: {
-                    id: admin.id,
-                    username: admin.username
+            db.query(
+                insertSql,
+                [admin.id, tokenHash, expiresAt],
+                (insertErr) => {
+
+                    if (insertErr) {
+                        console.error(
+                            "SESSION CREATE ERROR:",
+                            insertErr.message
+                        );
+
+                        return res.status(500).json({
+                            success: false,
+                            message: "Could not create login session"
+                        });
+                    }
+
+                    console.log("ADMIN LOGIN SUCCESS");
+
+                    return res.json({
+                        success: true,
+                        message: "Login successful",
+                        token,
+                        admin: {
+                            id: admin.id,
+                            username: admin.username
+                        }
+                    });
                 }
-            });
+            );
 
         } catch (error) {
 
@@ -101,11 +117,44 @@ router.post("/login", (req, res) => {
                 success: false,
                 message: "Login failed"
             });
-
         }
-
     });
+});
 
+
+// =====================================
+// ADMIN LOGOUT
+// =====================================
+
+router.post("/logout", authMiddleware, (req, res) => {
+
+    const token = req.headers.authorization.split(" ")[1];
+
+    const tokenHash = crypto
+        .createHash("sha256")
+        .update(token)
+        .digest("hex");
+
+    db.query(
+        "DELETE FROM sessions WHERE token_hash = ?",
+        [tokenHash],
+        (err) => {
+
+            if (err) {
+                console.error("LOGOUT ERROR:", err.message);
+
+                return res.status(500).json({
+                    success: false,
+                    message: "Logout failed"
+                });
+            }
+
+            return res.json({
+                success: true,
+                message: "Logout successful"
+            });
+        }
+    );
 });
 
 
@@ -131,15 +180,12 @@ router.put("/change-password", authMiddleware, async (req, res) => {
         });
     }
 
-    try {
-
-        const sql = "SELECT * FROM admin WHERE id = ?";
-
-        db.query(sql, [req.admin.id], async (err, result) => {
+    db.query(
+        "SELECT * FROM admin WHERE id = ?",
+        [req.admin.id],
+        async (err, result) => {
 
             if (err) {
-                console.error("CHANGE PASSWORD DATABASE ERROR:", err.message);
-
                 return res.status(500).json({
                     success: false,
                     message: "Database error"
@@ -174,60 +220,56 @@ router.put("/change-password", authMiddleware, async (req, res) => {
                     10
                 );
 
-                const updateSql = `
-                    UPDATE admin
-                    SET password = ?
-                    WHERE id = ?
-                `;
-
                 db.query(
-                    updateSql,
+                    "UPDATE admin SET password = ? WHERE id = ?",
                     [hashedPassword, req.admin.id],
                     (updateErr) => {
 
                         if (updateErr) {
-                            console.error("PASSWORD UPDATE ERROR:", updateErr.message);
-
                             return res.status(500).json({
                                 success: false,
                                 message: "Failed to change password"
                             });
                         }
 
-                        console.log("ADMIN PASSWORD UPDATED");
+                        // Invalidate all existing sessions
+                        db.query(
+                            "DELETE FROM sessions WHERE admin_id = ?",
+                            [req.admin.id],
+                            (sessionErr) => {
 
-                        return res.json({
-                            success: true,
-                            message: "Password changed successfully"
-                        });
+                                if (sessionErr) {
+                                    console.error(
+                                        "SESSION DELETE ERROR:",
+                                        sessionErr.message
+                                    );
 
+                                    return res.status(500).json({
+                                        success: false,
+                                        message: "Password changed, but session cleanup failed. Please contact support."
+                                    });
+                                }
+
+                                return res.json({
+                                    success: true,
+                                    message: "Password changed. Please login again."
+                                });
+                            }
+                        );
                     }
                 );
 
             } catch (error) {
 
-                console.error("CHANGE PASSWORD ERROR:", error.message);
+                console.error("PASSWORD ERROR:", error.message);
 
                 return res.status(500).json({
                     success: false,
                     message: "Password change failed"
                 });
-
             }
-
-        });
-
-    } catch (error) {
-
-        console.error("PASSWORD ROUTE ERROR:", error.message);
-
-        return res.status(500).json({
-            success: false,
-            message: "Something went wrong"
-        });
-
-    }
-
+        }
+    );
 });
 
 module.exports = router;

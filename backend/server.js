@@ -1,11 +1,9 @@
-
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
 require("./config/db");
 
-// Import Routes
 const authRoutes = require("./routes/authRoutes");
 const profileRoutes = require("./routes/profileRoutes");
 const skillsRoutes = require("./routes/skillsRoutes");
@@ -13,11 +11,12 @@ const educationRoutes = require("./routes/educationRoutes");
 const projectsRoutes = require("./routes/projectsRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
+
 const app = express();
 
 // Middleware
 app.use(cors());
-app.use(express.json({limit: "5mb"}));
+app.use(express.json({ limit: "5mb" }));
 
 // API Routes
 app.use("/api/auth", authRoutes);
@@ -27,18 +26,13 @@ app.use("/api/education", educationRoutes);
 app.use("/api/projects", projectsRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/dashboard", dashboardRoutes);
+
 // Home Route
 app.get("/", (req, res) => {
     res.json({
         success: true,
         message: "Kulakshee Portfolio Backend is Running!",
         version: "1.0.0"
-    });
-});
-app.get("/api/config-check", (req, res) => {
-    res.json({
-        jwtSecretConfigured: Boolean(process.env.JWT_SECRET),
-        databaseConfigured: Boolean(process.env.DB_HOST)
     });
 });
 
@@ -50,7 +44,7 @@ app.use((req, res) => {
     });
 });
 
-// Global Error Handler
+// Error Handler
 app.use((err, req, res, next) => {
     console.error(err.stack);
 
@@ -60,13 +54,13 @@ app.use((err, req, res, next) => {
     });
 });
 
-// Start Server
-const PORT = process.env.PORT || 5000;
+// Local development only
+if (require.main === module) {
+    const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-    console.log("------------------------------------");
-    console.log("Kulakshee Portfolio Backend");
-    console.log(`Server running on port ${PORT}`);
-    console.log("------------------------------------");
-});
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+    });
+}
+
 module.exports = app;
