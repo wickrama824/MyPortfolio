@@ -1,0 +1,139 @@
+.skills-manage {
+    min-height: 100vh;
+    padding: 40px;
+    background: #0b0b16;
+    color: white;
+}
+
+.manage-header {
+    margin-bottom: 35px;
+}
+
+.manage-header h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.manage-header p {
+    color: #9999ad;
+}
+
+/* Add Skill Form */
+
+.skill-form-container {
+    background: #19192b;
+    border: 1px solid #393052;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+}
+
+.skill-form-container h2 {
+    margin-bottom: 20px;
+}
+
+.skill-form-container form {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.skill-form-container input {
+    flex: 1;
+    min-width: 200px;
+    padding: 14px;
+    background: #0b0b16;
+    border: 1px solid #393052;
+    border-radius: 8px;
+    color: white;
+    font-size: 15px;
+    outline: none;
+}
+
+.skill-form-container input:focus {
+    border-color: #a78bfa;
+}
+
+.skill-form-container button {
+    padding: 14px 22px;
+    background: #8b5cf6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.skill-form-container button:hover {
+    background: #6d28d9;
+}
+
+.skill-form-container .cancel-btn {
+    background: #393052;
+}
+
+/* Skills List */
+
+.skills-list h2 {
+    margin-bottom: 20px;
+}
+
+.skills-table {
+    background: #19192b;
+    border: 1px solid #393052;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table-header,
+.skill-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 25px;
+}
+
+.table-header {
+    background: #252039;
+    color: #a78bfa;
+    font-weight: bold;
+}
+
+.skill-row {
+    border-top: 1px solid #393052;
+}
+
+.skill-row > span {
+    font-size: 16px;
+}
+
+.skill-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.skill-actions button {
+    padding: 9px 17px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background: #8b5cf6;
+}
+
+.delete-btn {
+    background: #dc3545;
+}
+
+@media (max-width: 600px) {
+    .skills-manage {
+        padding: 20px;
+    }
+
+    .table-header,
+    .skill-row {
+        padding: 15px;
+    }
+}

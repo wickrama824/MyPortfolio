@@ -1,0 +1,343 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #0b0b16;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+#root {
+    min-height: 100vh;
+    width: 100%;
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+.home {
+    width: 100%;
+    min-height: 75vh;
+    max-height: 750px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+
+    padding: 60px 10%;
+
+    background: #0b0b16;
+
+    scroll-margin-top: 85px;
+}
+
+
+/* Background Slideshow */
+
+.home-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.home-bg-slide {
+    position: absolute;
+    inset: 0;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    opacity: 0;
+
+    transform: scale(1);
+
+    transition:
+        opacity 1.5s ease-in-out,
+        transform 6s ease-in-out;
+}
+
+.home-bg-slide.active {
+    opacity: 1;
+    transform: scale(1.04);
+}
+
+
+/* Home Overlay */
+
+.home-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    background: linear-gradient(
+        90deg,
+        rgba(11, 11, 22, 0.95),
+        rgba(11, 11, 22, 0.75),
+        rgba(11, 11, 22, 0.45)
+    );
+}
+
+
+/* Home Content */
+
+.home-content {
+    max-width: 700px;
+    width: 100%;
+
+    position: relative;
+    z-index: 2;
+
+    animation: homeFadeIn 1.2s ease;
+}
+
+.welcome {
+    color: #c4b5fd;
+
+    letter-spacing: 4px;
+    font-size: 14px;
+
+    margin-bottom: 20px;
+}
+
+.home h1 {
+    font-size: 58px;
+    margin-bottom: 18px;
+    font-weight: bold;
+}
+
+.home h1 span {
+    color: #a78bfa;
+}
+
+.home h2 {
+    font-size: 25px;
+    color: #ddd6fe;
+    margin-bottom: 22px;
+}
+
+.description {
+    color: #ddd;
+
+    line-height: 1.9;
+    font-size: 16px;
+
+    max-width: 650px;
+
+    margin-bottom: 30px;
+}
+
+
+/* Typing Animation */
+
+.typing-heading {
+    min-height: 35px;
+}
+
+.typing-text {
+    color: #c4b5fd;
+}
+
+.typing-cursor {
+    color: #a78bfa;
+
+    font-weight: bold;
+
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+
+/* Home Buttons */
+
+.home-buttons {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.primary-btn,
+.secondary-btn {
+    padding: 14px 28px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.primary-btn {
+    background: #8b5cf6;
+    color: white;
+}
+
+.secondary-btn {
+    border: 1px solid #a78bfa;
+    color: white;
+}
+
+.primary-btn:hover {
+    background: #6d28d9;
+    transform: translateY(-4px);
+}
+
+.secondary-btn:hover {
+    background: #8b5cf6;
+    transform: translateY(-4px);
+}
+
+
+/* Slide Indicators */
+
+.slide-indicators {
+    display: flex;
+    gap: 10px;
+    margin-top: 35px;
+}
+
+.slide-indicators button {
+    width: 12px;
+    height: 12px;
+
+    border: none;
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.4);
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.slide-indicators button.active {
+    width: 35px;
+    background: #a78bfa;
+}
+
+
+/* Home Animation */
+
+@keyframes homeFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 992px) {
+
+    .home {
+        min-height: 70vh;
+        padding: 55px 7%;
+    }
+
+    .home h1 {
+        font-size: 48px;
+    }
+
+    .home h2 {
+        font-size: 22px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .home {
+        min-height: 70vh;
+        max-height: none;
+
+        padding: 55px 25px;
+    }
+
+    .home h1 {
+        font-size: 40px;
+    }
+
+    .home h2 {
+        font-size: 20px;
+    }
+
+    .description {
+        font-size: 14px;
+    }
+
+    .home-overlay {
+        background: rgba(11, 11, 22, 0.78);
+    }
+
+    .welcome {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 480px) {
+
+    .home {
+        min-height: 650px;
+        padding: 45px 20px;
+    }
+
+    .home h1 {
+        font-size: 34px;
+    }
+
+    .home h2 {
+        font-size: 18px;
+    }
+
+    .home-buttons {
+        flex-direction: column;
+    }
+
+    .home-buttons a {
+        text-align: center;
+    }
+
+    .slide-indicators {
+        margin-top: 30px;
+    }
+
+}

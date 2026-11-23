@@ -1,0 +1,345 @@
+/* =========================
+   EDUCATION SECTION
+========================= */
+
+.education-section {
+    position: relative;
+    width: 100%;
+    padding: 90px 8%;
+    min-height: 100vh;
+    background: linear-gradient(
+        135deg,
+        #0b0815,
+        #171027,
+        #100b1d
+    );
+    color: white;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Background Glow */
+
+.education-glow {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: -1;
+    pointer-events: none;
+    animation: educationFloat 8s ease-in-out infinite alternate;
+}
+
+.education-glow-one {
+    background: rgba(147, 51, 234, 0.2);
+    top: 10%;
+    left: -120px;
+}
+
+.education-glow-two {
+    background: rgba(192, 38, 211, 0.16);
+    bottom: 5%;
+    right: -100px;
+    animation-delay: 3s;
+}
+
+@keyframes educationFloat {
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(50px, 40px);
+    }
+}
+
+/* Heading */
+
+.education-heading {
+    text-align: center;
+    margin-bottom: 75px;
+}
+
+.education-heading > span {
+    color: #c084fc;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.education-heading h1 {
+    font-size: 40px;
+    margin: 14px 0;
+}
+
+.education-heading h1 span {
+    background: linear-gradient(
+        90deg,
+        #a855f7,
+        #e879f9
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.education-heading p {
+    color: #aaa0b8;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* Timeline */
+
+.education-timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.education-timeline::before {
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        #9333ea,
+        #d946ef,
+        #9333ea
+    );
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(192, 132, 252, 0.5);
+}
+
+/* Timeline Item */
+
+.education-item {
+    position: relative;
+    width: 50%;
+    padding: 20px 40px;
+    box-sizing: border-box;
+    animation: educationAppear 0.8s ease both;
+}
+
+.education-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.education-item.left {
+    left: 0;
+}
+
+.education-item.right {
+    left: 50%;
+}
+
+/* Timeline Dot */
+
+.education-dot {
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    background: #d946ef;
+    border: 4px solid #21102f;
+    border-radius: 50%;
+    top: 42px;
+    z-index: 2;
+    box-shadow: 0 0 15px #c084fc;
+}
+
+.education-item.left .education-dot {
+    right: -9px;
+}
+
+.education-item.right .education-dot {
+    left: -9px;
+}
+
+/* Education Card */
+
+.education-card {
+    position: relative;
+    padding: 28px;
+    background: linear-gradient(
+        145deg,
+        rgba(55, 30, 75, 0.8),
+        rgba(23, 15, 38, 0.95)
+    );
+    border: 1px solid rgba(192, 132, 252, 0.25);
+    border-radius: 18px;
+    backdrop-filter: blur(15px);
+    transition: 0.35s ease;
+    overflow: hidden;
+}
+
+.education-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        #9333ea,
+        #e879f9
+    );
+    transition: 0.5s;
+}
+
+.education-card:hover::before {
+    left: 0;
+}
+
+.education-card:hover {
+    transform: translateY(-7px);
+    border-color: #c084fc;
+    box-shadow: 0 15px 35px rgba(147, 51, 234, 0.18);
+}
+
+/* Card Top */
+
+.education-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+    gap: 10px;
+}
+
+.education-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(192, 132, 252, 0.15);
+    border: 1px solid rgba(192, 132, 252, 0.2);
+    border-radius: 13px;
+    font-size: 23px;
+}
+
+.education-year {
+    color: #e9d5ff;
+    background: rgba(147, 51, 234, 0.2);
+    border: 1px solid rgba(192, 132, 252, 0.2);
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+/* Card Text */
+
+.education-card h2 {
+    color: #f3e8ff;
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.education-card h3 {
+    color: #c084fc;
+    font-size: 14px;
+    margin-bottom: 14px;
+}
+
+.education-card p {
+    color: #b9afc5;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* Status */
+
+.education-status {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 20px;
+    color: #e9d5ff;
+    font-size: 12px;
+}
+
+.education-status span {
+    width: 8px;
+    height: 8px;
+    background: #c084fc;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #c084fc;
+}
+
+/* Animation */
+
+@keyframes educationAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+
+@media (max-width: 750px) {
+
+    .education-section {
+        padding: 70px 6%;
+    }
+
+    .education-heading h1 {
+        font-size: 32px;
+    }
+
+    .education-timeline::before {
+        left: 10px;
+    }
+
+    .education-item,
+    .education-item.right,
+    .education-item.left {
+        width: 100%;
+        left: 0;
+        padding: 15px 0 15px 40px;
+    }
+
+    .education-item.left .education-dot,
+    .education-item.right .education-dot {
+        left: 2px;
+        right: auto;
+    }
+
+    .education-card {
+        padding: 22px;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .education-heading h1 {
+        font-size: 28px;
+    }
+
+    .education-card h2 {
+        font-size: 18px;
+    }
+
+    .education-card-top {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .education-glow,
+    .education-item {
+        animation: none;
+    }
+}

@@ -1,0 +1,323 @@
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    width: 100%;
+    min-height: 85px;
+
+    padding: 0 5%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    z-index: 1000;
+
+    background: rgba(11, 11, 22, 0.95);
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(168, 85, 247, 0.18);
+
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+    color: white;
+
+    font-size: 27px;
+    font-weight: 800;
+
+    text-decoration: none;
+    letter-spacing: 0.5px;
+
+    white-space: nowrap;
+}
+
+.logo span {
+    color: #c084fc;
+}
+
+
+/* =========================
+   NAVIGATION LINKS
+========================= */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: clamp(12px, 2vw, 25px);
+
+    list-style: none;
+
+    flex-shrink: 0;
+}
+
+.nav-links li {
+    display: block;
+    white-space: nowrap;
+}
+
+.nav-links li a {
+    color: #d1c5e7;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.3s ease;
+
+    position: relative;
+}
+
+
+/* Hover Underline */
+
+.nav-links li a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -8px;
+
+    width: 0;
+    height: 2px;
+
+    background: linear-gradient(
+        90deg,
+        #a855f7,
+        #e879f9
+    );
+
+    transition: width 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: #d8b4fe;
+}
+
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+
+/* =========================
+   ADMIN BUTTON
+========================= */
+
+.admin-btn {
+    padding: 11px 20px;
+
+    color: white;
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    border-radius: 30px;
+
+    background: linear-gradient(
+        135deg,
+        #9333ea,
+        #c026d3
+    );
+
+    box-shadow: 0 5px 20px rgba(168, 85, 247, 0.3);
+
+    transition: 0.3s ease;
+
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.admin-btn span {
+    margin-left: 5px;
+}
+
+.admin-btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 25px rgba(192, 38, 211, 0.45);
+}
+
+
+/* =========================
+   MOBILE MENU BUTTON
+========================= */
+
+.menu-toggle {
+    display: none;
+
+    background: none;
+    border: none;
+
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+
+    width: 26px;
+    height: 3px;
+
+    margin: 5px 0;
+
+    border-radius: 5px;
+
+    background: #d8b4fe;
+
+    transition: 0.3s ease;
+}
+
+
+/* =========================
+   LAPTOP
+========================= */
+
+@media (max-width: 1100px) {
+
+    .navbar {
+        padding: 0 3%;
+    }
+
+    .nav-links {
+        gap: 14px;
+    }
+
+    .nav-links li a {
+        font-size: 13px;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .admin-btn {
+        padding: 10px 14px;
+        font-size: 12px;
+    }
+}
+
+
+/* =========================
+   TABLET & MOBILE
+========================= */
+
+@media (max-width: 850px) {
+
+    .navbar {
+        min-height: 75px;
+        padding: 0 5%;
+    }
+
+    .menu-toggle {
+        display: block;
+        z-index: 1002;
+    }
+
+    .nav-links {
+        position: absolute;
+
+        top: 75px;
+        left: 0;
+
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        gap: 25px;
+
+        padding: 30px 0;
+
+        background: rgba(15, 10, 29, 0.98);
+
+        border-bottom: 1px solid rgba(168, 85, 247, 0.25);
+
+        opacity: 0;
+        visibility: hidden;
+
+        transform: translateY(-15px);
+
+        transition: 0.3s ease;
+    }
+
+    .nav-links.active {
+        opacity: 1;
+        visibility: visible;
+
+        transform: translateY(0);
+    }
+
+    .nav-links li {
+        display: block;
+    }
+
+    .nav-links li a {
+        font-size: 15px;
+    }
+
+    .admin-btn {
+        margin-left: auto;
+        margin-right: 20px;
+
+        padding: 9px 16px;
+
+        font-size: 12px;
+    }
+
+
+    /* Hamburger Animation */
+
+    .menu-toggle.open span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle.open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.open span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 450px) {
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .admin-btn {
+        padding: 8px 12px;
+
+        margin-right: 12px;
+
+        font-size: 11px;
+    }
+
+}

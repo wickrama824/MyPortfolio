@@ -1,0 +1,242 @@
+/* =========================
+   PROFILE PAGE
+========================= */
+
+.profile-page {
+    min-height: 100vh;
+    padding: 40px;
+    background: #0b0b16;
+    color: white;
+    box-sizing: border-box;
+}
+
+.profile-header {
+    margin-bottom: 30px;
+}
+
+.profile-page h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.profile-page > p,
+.profile-header p {
+    color: #9999ad;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   PROFILE FORM
+========================= */
+
+.profile-form {
+    max-width: 750px;
+    background: #19192b;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #393052;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    box-sizing: border-box;
+}
+
+.profile-form h2 {
+    font-size: 20px;
+    color: #ddd6fe;
+    margin-bottom: 5px;
+}
+
+.profile-form label:not(.upload-photo-btn) {
+    color: #c4b5fd;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.profile-form input:not([type="file"]),
+.profile-form textarea {
+    width: 100%;
+    padding: 13px;
+    background: #0b0b16;
+    color: white;
+    border: 1px solid #393052;
+    border-radius: 7px;
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.profile-form input:focus,
+.profile-form textarea:focus {
+    border-color: #a78bfa;
+}
+
+.profile-form textarea {
+    resize: vertical;
+}
+
+
+/* =========================
+   PROFILE PHOTO
+========================= */
+
+.profile-photo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.profile-photo-section p {
+    color: #9999ad;
+    font-size: 13px;
+}
+
+.profile-photo-preview {
+    width: 150px;
+    height: 160px;
+    overflow: hidden;
+    border-radius: 14px;
+    border: 2px solid #8b5cf6;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+}
+
+.profile-photo-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.profile-photo-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#profileImage {
+    display: none;
+}
+
+.upload-photo-btn,
+.reset-image-btn {
+    padding: 10px 16px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.upload-photo-btn {
+    background: #8b5cf6;
+    color: white;
+}
+
+.upload-photo-btn:hover {
+    background: #6d28d9;
+    transform: translateY(-2px);
+}
+
+.reset-image-btn {
+    background: transparent;
+    color: #c4b5fd;
+    border: 1px solid #8b5cf6;
+}
+
+.reset-image-btn:hover {
+    background: rgba(139, 92, 246, 0.15);
+}
+
+
+/* =========================
+   DIVIDER
+========================= */
+
+.profile-divider {
+    width: 100%;
+    height: 1px;
+    background: #393052;
+    margin: 15px 0;
+}
+
+
+/* =========================
+   SAVE BUTTON
+========================= */
+
+.save-profile-btn {
+    margin-top: 15px;
+    padding: 14px;
+    background: #8b5cf6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.save-profile-btn:hover {
+    background: #6d28d9;
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   SUCCESS MESSAGE
+========================= */
+
+.profile-message {
+    color: #86efac;
+    font-size: 14px;
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    padding: 12px;
+    border-radius: 7px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    .profile-page {
+        padding: 25px 18px;
+    }
+
+    .profile-form {
+        padding: 22px;
+    }
+
+    .profile-page h1 {
+        font-size: 25px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .profile-page {
+        padding: 20px 12px;
+    }
+
+    .profile-form {
+        padding: 18px;
+    }
+
+    .profile-photo-preview {
+        width: 125px;
+        height: 140px;
+    }
+
+    .profile-photo-buttons {
+        flex-wrap: wrap;
+    }
+
+}

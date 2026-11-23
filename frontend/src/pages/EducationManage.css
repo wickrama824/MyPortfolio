@@ -1,0 +1,182 @@
+.education-manage {
+    min-height: 100vh;
+    padding: 40px;
+    background: #0b0b16;
+    color: white;
+}
+
+/* Header */
+.manage-header {
+    margin-bottom: 35px;
+}
+
+.manage-header h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.manage-header p {
+    color: #9999ad;
+}
+
+/* Form Container */
+.education-form-container {
+    background: #19192b;
+    border: 1px solid #393052;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+}
+
+.education-form-container h2 {
+    margin-bottom: 25px;
+}
+
+.education-form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.education-form-container label {
+    color: #c4b5fd;
+    font-weight: bold;
+}
+
+.education-form-container input,
+.education-form-container textarea {
+    width: 100%;
+    padding: 14px;
+    background: #0b0b16;
+    border: 1px solid #393052;
+    border-radius: 8px;
+    color: white;
+    font-size: 15px;
+    outline: none;
+    font-family: Arial, sans-serif;
+}
+
+.education-form-container input:focus,
+.education-form-container textarea:focus {
+    border-color: #a78bfa;
+}
+
+.education-form-container textarea {
+    resize: vertical;
+}
+
+/* Form Buttons */
+.education-form-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.education-form-buttons button {
+    padding: 13px 22px;
+    background: #8b5cf6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.education-form-buttons button:hover {
+    background: #6d28d9;
+}
+
+.education-form-buttons .cancel-btn {
+    background: #393052;
+}
+
+/* Education List */
+.education-list h2 {
+    margin-bottom: 25px;
+}
+
+.education-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.education-card {
+    background: #19192b;
+    border: 1px solid #393052;
+    border-radius: 12px;
+    padding: 25px;
+    transition: 0.3s;
+}
+
+.education-card:hover {
+    transform: translateY(-5px);
+    border-color: #a78bfa;
+}
+
+.education-card h3 {
+    font-size: 20px;
+    color: #c4b5fd;
+    margin-bottom: 12px;
+}
+
+.education-card h4 {
+    color: #a78bfa;
+    margin-bottom: 12px;
+}
+
+.education-card p {
+    color: #9999ad;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+/* Action Buttons */
+.education-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.education-actions button {
+    padding: 9px 18px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.education-actions .edit-btn {
+    background: #8b5cf6;
+}
+
+.education-actions .edit-btn:hover {
+    background: #6d28d9;
+}
+
+.education-actions .delete-btn {
+    background: #dc3545;
+}
+
+.education-actions .delete-btn:hover {
+    background: #b02a37;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+    .education-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    .education-manage {
+        padding: 20px;
+    }
+
+    .education-container {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,460 @@
+/* =========================
+   PROJECTS SECTION
+========================= */
+
+.projects {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    padding: 85px 8%;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(124, 58, 237, 0.16),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 75%,
+            rgba(219, 39, 119, 0.12),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #0d0b1b,
+            #151126,
+            #0b0b16
+        );
+
+    color: white;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* =========================
+   BACKGROUND GRID
+========================= */
+
+.projects::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(167, 139, 250, 0.045) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(167, 139, 250, 0.045) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+    pointer-events: none;
+}
+
+/* =========================
+   ANIMATED PURPLE GLOW
+========================= */
+
+.projects::after {
+    content: "";
+    position: absolute;
+
+    width: 400px;
+    height: 400px;
+
+    top: 20%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: rgba(139, 92, 246, 0.12);
+    filter: blur(150px);
+    border-radius: 50%;
+
+    animation: projectBackgroundGlow 7s ease-in-out infinite alternate;
+
+    pointer-events: none;
+}
+
+@keyframes projectBackgroundGlow {
+    from {
+        opacity: 0.4;
+        transform: translateX(-60%) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-40%) scale(1.2);
+    }
+}
+
+/* =========================
+   HEADING
+========================= */
+
+.projects-heading {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.projects-label {
+    display: inline-block;
+    color: #a78bfa;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
+
+.projects-heading h1 {
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.projects-heading h1 span {
+    color: #a78bfa;
+}
+
+.projects-description {
+    max-width: 550px;
+    margin: 0 auto;
+    color: #9999ad;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* =========================
+   PROJECT GRID
+========================= */
+
+.projects-container {
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 25px;
+    max-width: 1200px;
+    margin: auto;
+    align-items: stretch;
+}
+
+/* =========================
+   PROJECT CARD
+========================= */
+
+.project-card {
+    min-width: 0;
+
+    background: linear-gradient(
+        145deg,
+        rgba(28, 26, 48, 0.95),
+        rgba(18, 18, 33, 0.95)
+    );
+
+    border: 1px solid rgba(167, 139, 250, 0.18);
+    border-radius: 18px;
+    overflow: hidden;
+
+    backdrop-filter: blur(12px);
+
+    transition: 0.4s ease;
+    animation: projectFadeIn 0.8s ease both;
+}
+
+.project-card:hover {
+    transform: translateY(-9px);
+    border-color: #a78bfa;
+
+    box-shadow:
+        0 15px 35px rgba(139, 92, 246, 0.16),
+        0 0 20px rgba(139, 92, 246, 0.08);
+}
+
+/* =========================
+   PROJECT IMAGE
+========================= */
+
+.project-image {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    overflow: hidden;
+    background: #24203b;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.08);
+}
+
+/* Project Number */
+
+.project-number {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(15, 15, 30, 0.85);
+    border: 1px solid rgba(167, 139, 250, 0.5);
+    border-radius: 10px;
+
+    color: #c4b5fd;
+    font-size: 13px;
+    font-weight: bold;
+
+    backdrop-filter: blur(8px);
+}
+
+/* Image Overlay */
+
+.project-image-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(10, 8, 25, 0.55);
+    opacity: 0;
+    transition: 0.4s ease;
+}
+
+.project-image-overlay span {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.project-card:hover .project-image-overlay {
+    opacity: 1;
+}
+
+/* =========================
+   PROJECT CONTENT
+========================= */
+
+.project-content {
+    padding: 23px;
+}
+
+.project-content h2 {
+    color: #ddd6fe;
+    font-size: 19px;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.project-content > p {
+    color: #a1a1b5;
+    font-size: 13px;
+    line-height: 1.8;
+    min-height: 70px;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   TECHNOLOGY BADGES
+========================= */
+
+.project-technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 23px;
+}
+
+.project-technologies span {
+    padding: 7px 11px;
+
+    color: #c4b5fd;
+    background: rgba(139, 92, 246, 0.12);
+
+    border: 1px solid rgba(167, 139, 250, 0.22);
+    border-radius: 7px;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* =========================
+   PROJECT BUTTONS
+========================= */
+
+.project-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.project-buttons a {
+    flex: 1;
+    min-width: 0;
+
+    padding: 11px 8px;
+
+    text-align: center;
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+
+/* GitHub */
+
+.project-github {
+    color: #ddd6fe;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(167, 139, 250, 0.3);
+}
+
+.project-github:hover {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: #a78bfa;
+}
+
+/* Live Demo */
+
+.project-demo {
+    color: white;
+    background: linear-gradient(
+        135deg,
+        #8b5cf6,
+        #6d28d9
+    );
+
+    border: 1px solid transparent;
+}
+
+.project-demo:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 5px 18px rgba(139, 92, 246, 0.35);
+}
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes projectFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1000px) {
+
+    .projects {
+        padding: 75px 6%;
+    }
+
+    .projects-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 650px) {
+
+    .projects {
+        padding: 60px 6%;
+    }
+
+    .projects-heading h1 {
+        font-size: 32px;
+    }
+
+    .projects-container {
+        grid-template-columns: 1fr;
+        max-width: 430px;
+    }
+
+    .project-image {
+        height: 210px;
+    }
+
+    .project-content {
+        padding: 22px;
+    }
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 380px) {
+
+    .projects-heading h1 {
+        font-size: 28px;
+    }
+
+    .project-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .projects::after {
+        animation: none;
+    }
+
+    .project-card {
+        animation: none;
+        transition: none;
+    }
+
+    .project-card:hover {
+        transform: none;
+    }
+
+    .project-image img {
+        transition: none;
+    }
+}
