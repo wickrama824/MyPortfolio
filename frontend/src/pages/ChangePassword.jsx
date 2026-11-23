@@ -71,7 +71,7 @@ function ChangePassword() {
         try {
 
             const response = await fetch(
-                "http://localhost:5000/api/auth/change-password",
+                "https://kulakshee-portfolio-api.vercel.app/api/auth/change-password",
                 {
                     method: "PUT",
                     headers: {

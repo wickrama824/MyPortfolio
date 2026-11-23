@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./SkillsManage.css";
 
-const API_URL = "http://localhost:5000/api/skills";
+const API_URL = "https://kulakshee-portfolio-api.vercel.app/api/skills";
 
 const defaultSkills = [
     { name: "HTML", category: "Frontend Development" },

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./MessagesManage.css";
 
-const API_URL = "http://localhost:5000/api/messages";
+const API_URL = "https://kulakshee-portfolio-api.vercel.app/api/messages";
 
 function MessagesManage() {
 

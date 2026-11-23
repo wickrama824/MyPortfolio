@@ -24,7 +24,7 @@ function Admin() {
                 const token = localStorage.getItem("adminToken");
 
                 const response = await fetch(
-                    "http://localhost:5000/api/dashboard",
+                    "https://kulakshee-portfolio-api.vercel.app/api/dashboard",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`

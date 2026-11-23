@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import "./Contact.css";
 
-const API_URL = "http://localhost:5000/api/messages";
-const PROFILE_API = "http://localhost:5000/api/profile";
+const API_URL = "https://kulakshee-portfolio-api.vercel.app/api/messages";
+const PROFILE_API = "https://kulakshee-portfolio-api.vercel.app/api/profile";
 
 function Contact() {
 

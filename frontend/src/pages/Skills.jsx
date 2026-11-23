@@ -120,7 +120,7 @@ function Skills() {
             try {
 
                 const response = await fetch(
-                    "http://localhost:5000/api/skills"
+                    "https://kulakshee-portfolio-api.vercel.app/api/skills"
                 );
 
                 if (!response.ok) {

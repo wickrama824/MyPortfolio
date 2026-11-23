@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./ProjectsManage.css";
 
-const API_URL = "http://localhost:5000/api/projects";
+const API_URL = "https://kulakshee-portfolio-api.vercel.app/api/projects";
 
 const defaultProjects = [
     {

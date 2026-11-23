@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Education.css";
 
-const API_URL = "http://localhost:5000/api/education";
+const API_URL = "https://kulakshee-portfolio-api.vercel.app/api/education";
 
 function Education() {
 

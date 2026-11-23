@@ -24,7 +24,7 @@ function About() {
             try {
 
                 const response = await fetch(
-                    "http://localhost:5000/api/profile"
+                    "https://kulakshee-portfolio-api.vercel.app/api/profile"
                 );
 
                 const data = await response.json();

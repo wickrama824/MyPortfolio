@@ -30,7 +30,7 @@ function Profile() {
             try {
 
                 const response = await fetch(
-                    "http://localhost:5000/api/profile"
+                    "https://kulakshee-portfolio-api.vercel.app/api/profile"
                 );
 
                 const data = await response.json();
@@ -168,8 +168,8 @@ function Profile() {
         try {
 
             const url = profileId
-                ? `http://localhost:5000/api/profile/${profileId}`
-                : "http://localhost:5000/api/profile";
+                ? `https://kulakshee-portfolio-api.vercel.app/api/profile/${profileId}`
+                : "https://kulakshee-portfolio-api.vercel.app/api/profile";
 
             const response = await fetch(url, {
 
